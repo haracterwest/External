@@ -1,6 +1,7 @@
 package com.account.external.service;
 
 import com.account.external.model.ExternalInfo;
+import com.account.external.service.annotation.CacheResult;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
@@ -41,6 +42,10 @@ public class ExternalServiceImpl implements ExternalService {
         }
         logger.info("Called getExternalInfo with id: " + id);
         ExternalInfo info = externalInfoMap.get(id);
+        cacheMap.put(cacheKey, info);
+        if (info == null) {
+            throw new RuntimeException("Не найдено!");
+        }
         cacheMap.put(cacheKey, info);
         return info;
     }

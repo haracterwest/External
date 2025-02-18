@@ -1,4 +1,4 @@
-package com.account.external.service;
+package com.account.external.service.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
